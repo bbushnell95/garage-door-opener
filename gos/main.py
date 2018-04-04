@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from .models import DoorState
 from .api.Status import Status
 from .api.Home import Home
+from .api.ViewGarage import ViewGarage
 
 if __name__ == '__main__':
     db_url = 'mysql+pymysql://root:password@0.0.0.0:3306/Garage'
@@ -13,6 +14,7 @@ if __name__ == '__main__':
     api = Api(app)
     api.add_resource(Status, '/status')
     api.add_resource(Home, '/')
+    api.add_resource(ViewGarage, '/view_garage')
     engine = DoorState.db.get_engine(app=app)
     DoorState.db.create_all(app=app)
     app.run(host='192.168.0.10', port=5000)
